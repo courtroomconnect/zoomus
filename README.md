@@ -19,8 +19,11 @@ Or install it yourself as:
 ## Available actions
 
 - user/create
+- user/autocreate
+- user/autocreate2
 - user/custcreate
 - user/list
+- user/delete
 - meeting/create
 - meeting/delete
 - meeting/list
