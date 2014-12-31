@@ -23,10 +23,12 @@ Or install it yourself as:
 - user/autocreate2
 - user/custcreate
 - user/list
+- user/get
 - user/delete
 - meeting/create
 - meeting/delete
 - meeting/list
+- meeting/get
 - meeting/update
 - report/getaccountreport
 - report/getuserreport
