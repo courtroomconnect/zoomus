@@ -37,6 +37,12 @@ module Zoomus
         Utils.parse_response self.class.post('/user/autocreate2', :query => options)
       end
 
+      def user_get(*args)
+        options = Utils.extract_options!(args)
+        Utils.require_params([:id], options)
+        Utils.parse_response self.class.post('/user/get', :query => options)
+      end
+
       Utils.define_bang_methods(self)
 
     end
