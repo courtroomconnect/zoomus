@@ -22,14 +22,6 @@ describe Zoomus::Actions::Meeting do
       expect{@zc.meeting_update(filter_key(@args, :host_id))}.to raise_error(ArgumentError)
     end
 
-    it "requires a 'topic' argument" do
-      expect{@zc.meeting_update(filter_key(@args, :topic))}.to raise_error(ArgumentError)
-    end
-
-    it "requires a 'type' argument" do
-      expect{@zc.meeting_update(filter_key(@args, :type))}.to raise_error(ArgumentError)
-    end
-
     it "requires a 'id' argument" do
       expect{@zc.meeting_update(filter_key(@args, :id))}.to raise_error(ArgumentError)
     end
