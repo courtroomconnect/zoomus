@@ -32,6 +32,9 @@ Or install it yourself as:
 - meeting/update
 - report/getaccountreport
 - report/getuserreport
+- metrics/crc
+- metrics/meetings
+- metrics/meetingdetail
 
 ## Example
 ```ruby
