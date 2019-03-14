@@ -31,6 +31,7 @@ Or install it yourself as:
 - meeting/get
 - meeting/update
 - report/getaccountreport
+- report/getaudioreport
 - report/getuserreport
 - metrics/crc
 - metrics/meetings
