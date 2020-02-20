@@ -19,6 +19,18 @@ module Zoomus
         Utils.parse_response self.class.post('/user/delete', :query => options)
       end
 
+      def user_activate(*args)
+        options = Utils.extract_options!(args)
+        Utils.require_params([:id], options)
+        Utils.parse_response self.class.post('/user/activate', :query => options)
+      end
+
+      def user_deactivate(*args)
+        options = Utils.extract_options!(args)
+        Utils.require_params([:id], options)
+        Utils.parse_response self.class.post('/user/deactivate', :query => options)
+      end
+
       def user_custcreate(*args)
         options = Utils.extract_options!(args)
         Utils.require_params([:type, :email], options)
