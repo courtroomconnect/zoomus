@@ -10,15 +10,21 @@ module Zoom
       end
 
       def account_create(*args)
-        # TODO: implement accounts_create
-        # options = Utils.extract_options!(args)
-        raise Zoom::NotImplemented, 'accounts_create is not yet implemented'
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:first_name, :last_name, :email, :password).permit(:options)
+        Utils.parse_response self.class.post('/accounts', body: params.to_json, headers: request_headers)
       end
 
       def account_get(*args)
-        # TODO: implement account_get
-        # options = Utils.extract_options!(args)
-        raise Zoom::NotImplemented, 'account_get is not yet implemented'
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id)
+        Utils.parse_response self.class.get("/accounts/#{params[:id]}", query: params.except(:id), headers: request_headers)
+      end
+
+      def account_update_owner(*args)
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id, :email)
+        Utils.parse_response self.class.put("/accounts/#{params[:id]}/owner", body: params.except(:id).to_json, headers: request_headers)
       end
 
       def account_delete(*args)
