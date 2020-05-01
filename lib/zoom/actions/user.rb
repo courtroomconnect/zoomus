@@ -28,7 +28,7 @@ module Zoom
       def user_update(*args)
         params = Zoom::Params.new(Utils.extract_options!(args))
         params.require(:id).permit(%i[first_name last_name type pmi timezone dept vanity_name host_key cms_user_id])
-        Utils.parse_response self.class.patch("/users/#{params[:id]}", body: params.except(:id), headers: request_headers)
+        Utils.parse_response self.class.patch("/users/#{params[:id]}", body: params.except(:id).to_json, headers: request_headers)
       end
 
       def user_delete(*args)
@@ -95,9 +95,17 @@ module Zoom
       end
 
       def user_settings_update(*args)
-        # TODO: implement user_settings_update
-        # options = Utils.extract_options!(args)
-        raise Zoom::NotImplemented, 'user_settings_update is not yet implemented'
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id).permit(
+            :schedule_meeting,
+            :in_meeting,
+            :email_notification,
+            :recording,
+            :telephony,
+            :feature,
+            :tsp
+        )
+        Utils.parse_response self.class.patch("/users/#{params[:id]}/settings", body: params.except(:id).to_json, headers: request_headers)
       end
 
       def user_status_update(*args)
