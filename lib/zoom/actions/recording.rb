@@ -8,7 +8,7 @@ module Zoom
       def meeting_recording_list(*args)
         params = Zoom::Params.new(Utils.extract_options!(args))
         params.require(:user_id).permit(:page_size, :next_page_token, :mc, :trash, :to, :from, :trash_type)
-        Utils.parse_response self.class.get("/users/#{params[:user_id]}/recordings", query: params.except(:user_id).to_json, headers: request_headers)
+        Utils.parse_response self.class.get("/users/#{params[:user_id]}/recordings", query: params.except(:user_id), headers: request_headers)
       end
 
       # https://marketplace.zoom.us/docs/api-reference/zoom-api/cloud-recording/recordingget
