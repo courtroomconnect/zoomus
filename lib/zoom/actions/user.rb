@@ -127,9 +127,9 @@ module Zoom
       end
 
       def user_status_update(*args)
-        # TODO: implement user_status_update
-        # options = Utils.extract_options!(args)
-        raise Zoom::NotImplemented, 'user_status_update is not yet implemented'
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id).permit(:action)
+        Utils.parse_response self.class.put("/users/#{params[:id]}/status", body: params.except(:id).to_json, headers: request_headers)
       end
 
       def user_password_update(*args)
