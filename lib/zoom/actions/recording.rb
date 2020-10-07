@@ -4,11 +4,13 @@ module Zoom
   module Actions
     module Recording
 
-      # https://marketplace.zoom.us/docs/api-reference/zoom-api/cloud-recording/recordingslist
-      def meeting_recording_list(*args)
-        params = Zoom::Params.new(Utils.extract_options!(args))
-        params.require(:user_id).permit(:page_size, :next_page_token, :mc, :trash, :to, :from, :trash_type)
-        Utils.parse_response self.class.get("/users/#{params[:user_id]}/recordings", query: params.except(:user_id), headers: request_headers)
+      #https://marketplace.zoom.us/docs/api-reference/zoom-api/cloud-recording/recordingslist
+      # copied from upstream, replaces our meeting_recording_list
+      def recording_list(*args)
+        options = Zoom::Params.new(Utils.extract_options!(args))
+        options.require(:user_id)
+        Utils.process_datetime_params!(%i[from to], options)
+        Utils.parse_response self.class.get("/users/#{options[:user_id]}/recordings", query: options.except(:user_id), headers: request_headers)
       end
 
       # https://marketplace.zoom.us/docs/api-reference/zoom-api/cloud-recording/recordingget

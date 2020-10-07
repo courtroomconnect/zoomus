@@ -18,7 +18,7 @@ describe Zoom::Actions::Recording do
     end
 
     it "requires a 'user_id' argument" do
-      expect { @zc.meeting_recording_list }.to raise_error(Zoom::ParameterMissing)
+      expect { @zc.recording_list }.to raise_error(Zoom::ParameterMissing)
     end
 
   end
