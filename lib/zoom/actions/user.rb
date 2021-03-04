@@ -44,7 +44,8 @@ module Zoom
             :company,
             :location,
             :phone_number,
-            :phone_country
+            :phone_country,
+            :group_id
         )
         Utils.parse_response self.class.patch("/users/#{params[:id]}", body: params.except(:id).to_json, headers: request_headers)
       end
